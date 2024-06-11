@@ -24,6 +24,6 @@ export function shoppingReducer(state, action) {
     }
 
     default:
-      break;
+      return state;
   }
 }
