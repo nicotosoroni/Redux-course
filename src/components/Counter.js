@@ -8,6 +8,12 @@ const TYPES = {
   RESET: 'RESET',
 };
 
+const initialState = { count: 0 };
+
+const init = (initialState) => {
+  return { count: initialState.count + 100 };
+};
+
 function reducer(state, action) {
   switch (action.type) {
     case TYPES.INCREMENT:
@@ -25,10 +31,8 @@ function reducer(state, action) {
   }
 }
 
-const initialState = { count: 0 };
-
 const Counter = () => {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(reducer, initialState, init);
 
   const increment = () => dispatch({ type: TYPES.INCREMENT });
   const increment5 = () => dispatch({ type: TYPES.INCREMENT_5, payload: 5 });
@@ -48,7 +52,7 @@ const Counter = () => {
       <nav>
         <button onClick={reset}>Reset</button>
       </nav>
-      <h3>{state.count}</h3>
+      <h3>{state.count}?</h3>
     </div>
   );
 };

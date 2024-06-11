@@ -1,5 +1,6 @@
 import './App.css';
 import Counter from './components/Counter';
+import UpgradeCounter from './components/UpgradeCounter';
 
 function App() {
   return (
@@ -7,6 +8,8 @@ function App() {
       <h1>useReducer</h1>
       <hr />
       <Counter />
+      <hr />
+      <UpgradeCounter />
     </div>
   );
 }
