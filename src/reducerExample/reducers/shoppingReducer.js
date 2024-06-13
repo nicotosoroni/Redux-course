@@ -1,4 +1,4 @@
-import { TYPES } from 'actions/shoppingActions';
+import { TYPES } from 'reducerExample/actions/shoppingActions';
 
 export const shoppingInitialState = {
   products: [

@@ -2,10 +2,10 @@ import React, { useReducer } from 'react';
 import {
   shoppingReducer,
   shoppingInitialState,
-} from 'reducers/shoppingReducer';
+} from 'reducerExample/reducers/shoppingReducer';
 import ProductItem from './ProductItem';
 import { CartItem } from './CartItem';
-import { TYPES } from 'actions/shoppingActions';
+import { TYPES } from 'reducerExample/actions/shoppingActions';
 
 const ShoppingCart = () => {
   const [state, dispatch] = useReducer(shoppingReducer, shoppingInitialState);

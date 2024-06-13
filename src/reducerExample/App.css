@@ -28,6 +28,18 @@
   color: #61dafb;
 }
 
+.box {
+  padding: 1rem;
+  margin: 1rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1) inset;
+}
+
+.grid-responsive {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 1rem;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
