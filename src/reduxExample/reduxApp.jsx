@@ -8,6 +8,7 @@ function ReduxApp() {
     <Provider store={store}>
       <div style={{ textAlign: 'center' }}>
         <h1>Redux</h1>
+        Redux app
         <hr />
         <TeoriaRedux />
       </div>
