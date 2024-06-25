@@ -1,28 +1,19 @@
-import React, { useReducer } from 'react';
-import {
-  shoppingReducer,
-  initialState,
-} from 'reducerExample/reducers/shoppingReducer';
+import React from 'react';
 import ProductItem from './ProductItem';
 import { CartItem } from './CartItem';
-import { TYPES } from 'reducerExample/actions/shoppingActions';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  addToCart,
+  removeFromCart,
+  clearCart,
+} from 'reduxExample/actions/shoppingActions';
 
 const ShoppingCart = () => {
-  const [state, dispatch] = useReducer(shoppingReducer, initialState);
-  const { products, cart } = state;
+  const state = useSelector((state) => state);
+  const dispatch = useDispatch();
+  // @ts-ignore
+  const { products, cart } = state.shopping;
 
-  const addToCart = (id) => {
-    dispatch({ type: TYPES.ADD_TO_CART, payload: id });
-  };
-  const removeFromCart = (id) => {
-    dispatch({ type: TYPES.REMOVE_ONE_FROM_CART, payload: id });
-  };
-  const removeAllFromCart = (id) => {
-    dispatch({ type: TYPES.REMOVE_ALL_FROM_CART, payload: id });
-  };
-  const clearCart = () => {
-    dispatch({ type: TYPES.CLEAR_CART });
-  };
   return (
     <>
       <div>Shopping Cart</div>
@@ -32,7 +23,7 @@ const ShoppingCart = () => {
           <ProductItem
             key={product.id}
             data={product}
-            addToCart={addToCart}
+            addToCart={() => dispatch(addToCart(product.id))}
           ></ProductItem>
         ))}
       </article>
@@ -42,11 +33,11 @@ const ShoppingCart = () => {
           <CartItem
             key={index}
             data={item}
-            removeOneFromCart={removeFromCart}
-            removeAllFromCart={removeAllFromCart}
+            removeOneFromCart={() => dispatch(removeFromCart(item.id))}
+            removeAllFromCart={() => dispatch(removeFromCart(item.id, true))}
           ></CartItem>
         ))}
-        <button onClick={clearCart}>Clear Cart</button>
+        <button onClick={() => dispatch(clearCart())}>Clear Cart</button>
       </article>
     </>
   );
