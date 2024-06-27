@@ -11,7 +11,6 @@ import {
 import { TYPES } from 'reducerExample/actions/crudActions';
 
 const CrudApi = () => {
-  // const [db, setDb] = useState(null);
   const [state, dispatch] = useReducer(crudReducer, initialState);
   const { db } = state;
   const [dataToEdit, setDataToEdit] = useState(null);
