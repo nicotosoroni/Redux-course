@@ -6,11 +6,11 @@ import {
   NO_DATA,
 } from 'reduxExample/types';
 
-export const crudInitialState = {
-  db: null,
+export const initialState = {
+  db: [],
 };
 
-export const crudReducer = (state, action) => {
+export const crudReducer = (state = initialState, action) => {
   switch (action.type) {
     case READ_ALL_DATA: {
       return { ...state, db: action.payload };
@@ -38,7 +38,7 @@ export const crudReducer = (state, action) => {
       };
     }
     case NO_DATA: {
-      return crudInitialState;
+      return initialState;
     }
     default:
       return state;

@@ -1,18 +1,23 @@
-import React, { useEffect, useReducer, useState } from 'react';
-import { helpHttp } from 'reducerExample/helpers/helpHttp';
+import React, { useEffect, useState } from 'react';
 import CrudForm from './CrudForm';
 import CrudTable from './CrudTable';
 import Loader from './Loader';
 import Message from './Message';
+import { helpHttp } from 'reduxExample/helpers/helpHttp';
+import { useDispatch, useSelector } from 'react-redux';
 import {
-  crudReducer,
-  initialState,
-} from 'reducerExample/reducers/crudReducers';
-import { TYPES } from 'reducerExample/actions/crudActions';
+  createAction,
+  deleteAction,
+  noDataAction,
+  readAllAction,
+  updateAction,
+} from 'reduxExample/actions/crudActions';
 
 const CrudApi = () => {
-  const [state, dispatch] = useReducer(crudReducer, initialState);
-  const { db } = state;
+  const state = useSelector((state) => state);
+  const dispatch = useDispatch();
+  // @ts-ignore
+  const { db } = state.crud;
   const [dataToEdit, setDataToEdit] = useState(null);
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -28,16 +33,16 @@ const CrudApi = () => {
         //console.log(res);
         if (!res.err) {
           // @ts-ignore
-          dispatch({ type: TYPES.READ_ALL_DATA, payload: res });
+          dispatch(readAllAction(res));
           setError(null);
         } else {
           // @ts-ignore
-          dispatch({ type: TYPES.NO_DATA });
+          dispatch(noDataAction());
           setError(res);
         }
         setLoading(false);
       });
-  }, [url]);
+  }, [url, dispatch]);
 
   const createData = (data) => {
     data.id = Date.now().toString();
@@ -52,7 +57,7 @@ const CrudApi = () => {
       //console.log(res);
       if (!res.err) {
         // @ts-ignore
-        dispatch({ type: TYPES.CREATE_DATA, payload: res });
+        dispatch(createAction(res));
       } else {
         setError(res);
       }
@@ -72,7 +77,7 @@ const CrudApi = () => {
       //console.log(res);
       if (!res.err) {
         // @ts-ignore
-        dispatch({ type: TYPES.UPDATE_DATA, payload: data });
+        dispatch(updateAction(res));
       } else {
         setError(res);
       }
@@ -95,7 +100,7 @@ const CrudApi = () => {
         //console.log(res);
         if (!res.err) {
           // @ts-ignore
-          dispatch({ type: TYPES.DELETE_DATA, payload: id });
+          dispatch(deleteAction(id));
         } else {
           setError(res);
         }

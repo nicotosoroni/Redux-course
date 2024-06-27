@@ -4,7 +4,7 @@ export const initialState = {
   db: null,
 };
 
-export const crudReducer = (state, action) => {
+export const crudReducer = (state = initialState, action) => {
   switch (action.type) {
     case TYPES.READ_ALL_DATA: {
       return { ...state, db: action.payload };
