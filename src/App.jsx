@@ -1,15 +1,15 @@
 import React from 'react';
 import ReducerApp from 'reducerExample/ReducerApp';
 import ReduxApp from 'reduxExample/reduxApp';
+import ReduxToolkitApp from 'reduxTookitExample/reduxToolkitApp';
 
 function App() {
-  console.log(process.env.REACT_APP_SHOWN_EXAMPLE);
   return (
     <div>
-      {process.env.REACT_APP_SHOWN_EXAMPLE === 'redux' ? (
-        <ReduxApp />
-      ) : (
-        <ReducerApp />
+      {process.env.REACT_APP_SHOWN_EXAMPLE === 'reducer' && <ReducerApp />}
+      {process.env.REACT_APP_SHOWN_EXAMPLE === 'redux' && <ReduxApp />}
+      {process.env.REACT_APP_SHOWN_EXAMPLE === 'redux_toolkit' && (
+        <ReduxToolkitApp />
       )}
     </div>
   );
