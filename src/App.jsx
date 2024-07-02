@@ -1,7 +1,7 @@
 import React from 'react';
 import ReducerApp from 'reducerExample/ReducerApp';
 import ReduxApp from 'reduxExample/reduxApp';
-import ReduxToolkitApp from 'reduxTookitExample/reduxToolkitApp';
+import ReduxToolkitApp from 'reduxToolkitExample/reduxToolkitApp';
 
 function App() {
   return (

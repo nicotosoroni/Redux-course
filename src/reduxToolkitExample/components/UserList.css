@@ -1,0 +1,33 @@
+#divA {
+  width: 300px;
+  height: 100px;
+  background-color: burlywood;
+  text-align: center;
+}
+#divB {
+  width: 300px;
+  height: 100px;
+  background-color: wheat;
+  text-align: center;
+}
+#divC {
+  width: 300px;
+  height: 100px;
+  background-color: beige;
+  text-align: center;
+}
+@media (max-width: 600px) {
+  #divA,
+  #divB,
+  #divC {
+    background-color: antiquewhite;
+  }
+}
+
+@media (width <= 500px) {
+  #divA,
+  #divB,
+  #divC {
+    background-color: tan;
+  }
+}
